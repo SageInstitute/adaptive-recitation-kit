@@ -635,7 +635,10 @@ def render_brief(R, rules, queue, overlay, cfg, today):
         lead = "Next block: %s (%s, %s)." % (mode, rr["evidence"], rr["strength"])
     if lead is None:
         due = [q for q in queue if q["due_now"]]
-        lead = "Next block: defaults (%d data points, below the 4 needed to adapt); %d card(s) due now." % (S["n_cards"], len(due))
+        if S["n_cards"] < 4:
+            lead = "Next block: defaults (%d data points, below the 4 needed to adapt); %d card(s) due now." % (S["n_cards"], len(due))
+        else:
+            lead = "Next block: defaults (cold accuracy between the thresholds over %d cards, so the mode stands); %d card(s) due now." % (S["n_cards"], len(due))
     L.append("")
     L.append("**" + lead + "**")
     meta = [m for m in R.get("metas", [])]

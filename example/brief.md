@@ -1,6 +1,6 @@
 # Adaptive brief
 
-**Next block: defaults (16 data points, below the 4 needed to adapt); 8 card(s) due now.**
+**Next block: defaults (cold accuracy between the thresholds over 16 cards, so the mode stands); 8 card(s) due now.**
 
 Generated 2026-10-09 by analyze.py v1.6. Data: 19 attempts on 8 items (16 cards, 3 probes), 3 learner signals.
 Exam: 2026-10-15 (6 days).
