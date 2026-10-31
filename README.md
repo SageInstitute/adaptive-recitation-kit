@@ -6,6 +6,7 @@ A portable study protocol for any chat model, in one text file. Three modes: **s
 adaptive-recitation-kit/
   REGISTER.md            the protocol: paste block, the three modes with their gates, loop, log schema, by-hand analysis, rules, anti-sycophancy clauses, porting, reader-output rule, guardrails, evidence
   analyze.py             optional analyzer (Python 3.8+, standard library only): log -> profile.json + brief.md
+  transcribe.py          optional transcriber: a Claude Code session transcript -> session_log.jsonl, written by machinery from the register's turn shapes
   overlay.example.json   learner preferences and thresholds (copy to overlay.json and edit)
   example/               a constructed two-session example on public-domain material (Euclid, Elements I, definitions, Heath 1908):
                          source.md, bank.md, session_log.jsonl, and the profile.json and brief.md the analyzer wrote from them
@@ -21,6 +22,7 @@ adaptive-recitation-kit/
 ## With code
 ```
 python3 analyze.py selftest
+python3 transcribe.py TRANSCRIPT.jsonl session_log.jsonl --manifest manifest.md   # the log from the session's transcript; each event once
 python3 analyze.py analyze example/session_log.jsonl --overlay overlay.example.json --out /tmp/out --today 2026-10-09
 python3 analyze.py add session_log.jsonl item=U1-01 concept=point verdict=partly error=omission
 ```
