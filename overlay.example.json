@@ -1,0 +1,11 @@
+{
+  "learner": "learner",
+  "version": 1,
+  "register": {
+    "verdict": "correct / partly / no, then the specific error, then the corrected statement, then stop",
+    "tone": "terse, no padding, no closing line that needs a follow-up"
+  },
+  "modes": {"study": {"block_cap_min": 45}},
+  "thresholds": {},
+  "rules_off": []
+}

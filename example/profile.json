@@ -1,0 +1,372 @@
+{
+  "version": "1.6",
+  "generated": "2026-10-09",
+  "stats": {
+    "n_attempts": 19,
+    "n_cards": 16,
+    "n_items": 8,
+    "n_signals": 3,
+    "cold": {
+      "n": 8,
+      "acc": 0.5625,
+      "last4": 0.5
+    },
+    "retry_short": {
+      "n": 8,
+      "acc": 0.875
+    },
+    "retry_long": {
+      "n": 0,
+      "acc": null
+    },
+    "probe": {
+      "n": 3,
+      "acc": 1.0
+    },
+    "errors": {
+      "omission": 4,
+      "misframe": 1,
+      "wording": 1,
+      "intrusion": 1
+    },
+    "intrusion_pairs": [
+      {
+        "target": "definitions",
+        "intruder": "straight-line",
+        "count": 1
+      }
+    ],
+    "by_format": {
+      "short": {
+        "n": 6,
+        "acc": 0.917
+      },
+      "scenario": {
+        "n": 3,
+        "acc": 1.0
+      },
+      "explain": {
+        "n": 8,
+        "acc": 0.562
+      },
+      "list": {
+        "n": 2,
+        "acc": 0.75
+      }
+    },
+    "by_presentation": {
+      "question_first": {
+        "n": 8,
+        "acc": 0.562
+      }
+    },
+    "by_feedback": {
+      "quote": {
+        "n": 3,
+        "acc": 1.0
+      },
+      "quote+slide": {
+        "n": 1,
+        "acc": 0.5
+      },
+      "contrast": {
+        "n": 1,
+        "acc": 1.0
+      }
+    },
+    "signals": {
+      "outside_definition": 1,
+      "integrate": 1,
+      "instruction": 1
+    },
+    "max_same_stage_run": 5,
+    "framework_mastery": {
+      "definitions": 0.653,
+      "figures": 0.645
+    },
+    "framework_confidence": {
+      "definitions": 0.468,
+      "figures": 0.536
+    },
+    "by_grain": {},
+    "mode": "study",
+    "misaddressed": 0,
+    "retention": [
+      {
+        "band": "same day",
+        "n": 0,
+        "acc": null
+      },
+      {
+        "band": "1 to 2 days",
+        "n": 0,
+        "acc": null
+      },
+      {
+        "band": "3 to 6 days",
+        "n": 0,
+        "acc": null
+      },
+      {
+        "band": "7+ days",
+        "n": 3,
+        "acc": 0.8333333333333334
+      }
+    ],
+    "calibration": {
+      "n": 9,
+      "sure_wrong": 4,
+      "unsure_right": 0,
+      "sure_wrong_items": [
+        "U1-04",
+        "U1-06",
+        "U1-07",
+        "U1-08"
+      ]
+    },
+    "probe_cue_free": {
+      "n": 3,
+      "acc": 1.0
+    },
+    "units": {},
+    "last_block_units": []
+  },
+  "concepts": [
+    {
+      "concept": "plane",
+      "framework": "definitions",
+      "n": 2,
+      "mastery": 0.533,
+      "confidence": 0.467,
+      "last": "correct",
+      "non_correct": 1,
+      "ever_correct": true
+    },
+    {
+      "concept": "straight-line",
+      "framework": "definitions",
+      "n": 3,
+      "mastery": 0.551,
+      "confidence": 0.536,
+      "last": "correct",
+      "non_correct": 2,
+      "ever_correct": true
+    },
+    {
+      "concept": "circle",
+      "framework": "figures",
+      "n": 3,
+      "mastery": 0.587,
+      "confidence": 0.536,
+      "last": "partial",
+      "non_correct": 2,
+      "ever_correct": true
+    },
+    {
+      "concept": "line-extremities",
+      "framework": "definitions",
+      "n": 1,
+      "mastery": 0.667,
+      "confidence": 0.333,
+      "last": "correct",
+      "non_correct": 0,
+      "ever_correct": true
+    },
+    {
+      "concept": "line",
+      "framework": "definitions",
+      "n": 3,
+      "mastery": 0.703,
+      "confidence": 0.536,
+      "last": "correct",
+      "non_correct": 1,
+      "ever_correct": true
+    },
+    {
+      "concept": "parallel",
+      "framework": "figures",
+      "n": 3,
+      "mastery": 0.703,
+      "confidence": 0.536,
+      "last": "correct",
+      "non_correct": 1,
+      "ever_correct": true
+    },
+    {
+      "concept": "point",
+      "framework": "definitions",
+      "n": 2,
+      "mastery": 0.733,
+      "confidence": 0.467,
+      "last": "correct",
+      "non_correct": 0,
+      "ever_correct": true
+    },
+    {
+      "concept": "surface",
+      "framework": "definitions",
+      "n": 2,
+      "mastery": 0.733,
+      "confidence": 0.467,
+      "last": "correct",
+      "non_correct": 0,
+      "ever_correct": true
+    }
+  ],
+  "rules": [
+    {
+      "id": "R2",
+      "lever": "order+spacing",
+      "strength": "act",
+      "n": 8,
+      "evidence": "short-lag retries (<=6 cards) 88% over 8",
+      "action": "Short-lag success is easy and says little about retention. Set the next retry at 7+ cards or the block end; a short-lag correct does not count toward retirement (two correct sessions)."
+    },
+    {
+      "id": "R3",
+      "lever": "order",
+      "strength": "act",
+      "n": 16,
+      "evidence": "longest run of the same stage = 5 cards in a row",
+      "action": "Interleave: alternate 1 new : 1 retry (retries 3+ cards after the miss). Avoid a wall of new cards or a wall of retries."
+    },
+    {
+      "id": "R5",
+      "lever": "feedback",
+      "strength": "act",
+      "n": 2,
+      "evidence": "2+ non-correct attempts: straight-line, circle",
+      "action": "Do not repeat the same explanation. Change representation: add the 'why' line, an outside definition, a contrast pair or a worked example, then re-test 3+ cards later."
+    },
+    {
+      "id": "R7",
+      "lever": "order+presentation",
+      "strength": "act",
+      "n": 2,
+      "evidence": "2 learner questions that mark integration gaps",
+      "action": "Answer first, then turn each question into a card scheduled 3+ cards later (see list). Questions are the learner telling you where the map has a hole."
+    },
+    {
+      "id": "R8",
+      "lever": "presentation",
+      "strength": "act",
+      "n": 1,
+      "evidence": "standing instruction from the learner",
+      "action": "Persist as overlay settings and obey from the first card of the next session: give the Greek term beside each defined word at its first use"
+    },
+    {
+      "id": "R9",
+      "lever": "presentation",
+      "strength": "tentative",
+      "n": 11,
+      "evidence": "scenario 100% vs explain 56%",
+      "action": "Open new topics with the scenario format, then fade to explain."
+    },
+    {
+      "id": "R15",
+      "lever": "order+presentation",
+      "strength": "act",
+      "n": 4,
+      "evidence": "4 card(s) answered sure and wrong: U1-04, U1-06, U1-07, U1-08",
+      "action": "Re-ask each at 7+ cards in contrast format. Open the next block with one line: say unsure when unsure; a wrong sure costs more than a blank."
+    }
+  ],
+  "queue": [
+    {
+      "item": "U1-01",
+      "concept": "point",
+      "box": 2,
+      "due": "2026-10-01",
+      "when": "end-of-session pass",
+      "mastery": 0.733,
+      "due_now": true
+    },
+    {
+      "item": "U1-06",
+      "concept": "plane",
+      "box": 2,
+      "due": "2026-10-08",
+      "when": "end-of-session pass",
+      "mastery": 0.533,
+      "due_now": true
+    },
+    {
+      "item": "U1-04",
+      "concept": "straight-line",
+      "box": 2,
+      "due": "2026-10-08",
+      "when": "end-of-session pass",
+      "mastery": 0.551,
+      "due_now": true
+    },
+    {
+      "item": "U1-07",
+      "concept": "circle",
+      "box": 2,
+      "due": "2026-10-08",
+      "when": "end-of-session pass",
+      "mastery": 0.587,
+      "due_now": true
+    },
+    {
+      "item": "U1-03",
+      "concept": "line-extremities",
+      "box": 2,
+      "due": "2026-10-08",
+      "when": "end-of-session pass",
+      "mastery": 0.667,
+      "due_now": true
+    },
+    {
+      "item": "U1-02",
+      "concept": "line",
+      "box": 3,
+      "due": "2026-10-09",
+      "when": "final pass: retired, last attempt 2026-10-08",
+      "mastery": 0.703,
+      "due_now": true,
+      "final": true
+    },
+    {
+      "item": "U1-05",
+      "concept": "surface",
+      "box": 2,
+      "due": "2026-10-09",
+      "when": "final pass: retired, last attempt 2026-10-08",
+      "mastery": 0.733,
+      "due_now": true,
+      "final": true
+    },
+    {
+      "item": "U1-08",
+      "concept": "parallel",
+      "box": 2,
+      "due": "2026-10-09",
+      "when": "final pass: retired, last attempt 2026-10-08",
+      "mastery": 0.703,
+      "due_now": true,
+      "final": true
+    }
+  ],
+  "gate": {
+    "mode": "study",
+    "present": [
+      "dates (\"Exam: 2026-10-15\")",
+      "source.md (\"# Unit 1 source: Euclid\")",
+      "bank.md (\"# Unit 1 bank\")",
+      "session_log.jsonl (\"# Constructed example\")"
+    ],
+    "missing": [],
+    "waived": [],
+    "unwaived": [],
+    "unproven": [],
+    "study_ok": true,
+    "prev_unit": null,
+    "prev_known": null,
+    "learn_stall": false
+  },
+  "ledger": {},
+  "overlay_applied": true,
+  "problems": [],
+  "audit": []
+}

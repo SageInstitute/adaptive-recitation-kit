@@ -1,0 +1,8 @@
+__pycache__/
+tests/state.json
+tests/scenario.json
+tests/transcript.md
+tests/tutor_notes.md
+tests/run.log
+tests/run.err
+overlay.json
