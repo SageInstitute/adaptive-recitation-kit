@@ -1,10 +1,10 @@
 # Adaptive Recitation Kit
 
-A portable study protocol for any chat model, in one text file. Three modes: **study** (strict, sourced, deadline-aware; the model owns plan, order, grouping, pace and presentation and adapts them to the log; gated on dates, syllabus and the unit's materials, or a named waiver), **learn** (paced to a live course; errors tagged by grain; never runs a unit whose materials are missing), **ponder** (Socratic dialogue with sources open; three ledgers kept apart: learner, literature, model; anti-sycophancy clauses, of which only the model-assumption bar is waivable by the learner). Inside them the model uses four operations: recite, teach, analyze, plan. Model-agnostic, course-agnostic, no dependencies.
+A portable study protocol for any chat model, in one text file. Three modes: **study** (strict, sourced, deadline-aware; the model owns plan, order, grouping, pace and presentation and adapts them to the log; gated on dates, syllabus and the unit's materials, or a named waiver), **learn** (paced to a live course; errors tagged by grain; never runs a unit whose materials are missing), **ponder** (Socratic dialogue with sources open; three ledgers kept apart: learner, literature, model; anti-sycophancy clauses, of which only the model-assumption bar is waivable by the learner). Inside them the model uses four operations: recite, teach, analyze, plan. A fifth, the **lecture pass**, is performed by the same model before them when a unit has no bank: from the unit's slides, its recording or transcript and the learner's notes it builds the deck and the card bank, after printing a check of what it could open and what it is therefore able to build. Model-agnostic, course-agnostic, no dependencies.
 
 ```
 adaptive-recitation-kit/
-  REGISTER.md            the protocol: paste block, the three modes with their gates, loop, log schema, by-hand analysis, rules, anti-sycophancy clauses, porting, reader-output rule, guardrails, evidence
+  REGISTER.md            the protocol: paste block, the three modes with their gates, the lecture pass and its check, loop, log schema, by-hand analysis, rules, anti-sycophancy clauses, porting, reader-output rule, guardrails, evidence
   analyze.py             optional analyzer (Python 3.8+, standard library only): log -> profile.json + brief.md
   transcribe.py          optional transcriber: a Claude Code session transcript -> session_log.jsonl, written by machinery from the register's turn shapes
   overlay.example.json   learner preferences and thresholds (copy to overlay.json and edit)
@@ -15,7 +15,7 @@ adaptive-recitation-kit/
 
 ## Quick start (any model, no code)
 1. Attach `REGISTER.md` and paste its section 1 as the first message.
-2. Attach the unit's materials: the dates, the syllabus, the slide text, the transcript or recording, your notes, any assigned reading, and the card bank (REGISTER section 2 says what each mode needs). Attach `overlay.json` if you have one. From the second session on, also attach `session_log.jsonl` and the last `brief.md`.
+2. Attach the unit's materials (with no card bank yet, attach the raw materials and say `pass` and the unit, for example `pass U1`: the model builds the deck and the bank itself, if it is able, and says what it is not able to build): the dates, the syllabus, the slide text, the transcript or recording, your notes, any assigned reading, and the card bank (REGISTER section 2 says what each mode needs). Attach `overlay.json` if you have one. From the second session on, also attach `session_log.jsonl` and the last `brief.md`.
 3. Type `study`, `learn` or `ponder`, plus the unit (for example `study U1`).
 4. At the end type `log` (the model also prints it on `end`); save what it prints. The log is the only state.
 
@@ -34,7 +34,7 @@ Two sessions a week apart on eight cards. Cold accuracy 56%, short-lag retries 8
 `tests/learner.py` is a scripted learner that answers the tutor from a fixed table, waives missing items by name, and never sees the answer key; `tests/PROMPT_study.txt` and `tests/PROMPT_learn.txt` drive a tutor against it inside a folder holding the kit and the example unit. Run a model against them and grade the transcript against REGISTER sections 1, 3 and 7. `tests/audit_bank.py` checks a bank for probes without locators and stems or source lines that leak another card's answer.
 
 ## Guardrails (short form)
-Course material only. Corrections are sourced or silent. No adaptation tied to a lapse. The log is the state. Small samples are called small. The gates are real. Study support only; not for graded work.
+Course material only. The lecture pass builds only from what it opened. Corrections are sourced or silent. No adaptation tied to a lapse. The log is the state. Small samples are called small. The gates are real. Study support only; not for graded work.
 
 ## License
 MIT, Sage Institute. See `LICENSE`.

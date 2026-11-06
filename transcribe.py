@@ -13,8 +13,10 @@ Shapes read (REGISTER section 1):
   tutor   first line begins correct | partly | no          closes the open card as an attempt; error tag and grain from the first lines
   tutor   "[integrate]" etc. anywhere                       the kind of the learner question just answered (one word from the signal list)
   tutor   present: / missing: / waived:                     the materials check, into the meta line
+  tutor   pass check: / able:                               the lecture pass's check, as one `pass` line (the lines as printed)
   tutor   "parked"                                          the open card is parked
   learner  log | end | study | learn | ponder                session commands; a mode word after the first is a mode signal
+  learner  pass <unit> | print bank                          session commands for the lecture pass; never an attempt or a signal
   learner  anything while a card is open                    an attempt if a verdict follows, else a signal
   learner  "... sure" / "... unsure" as the last word        confidence
 
@@ -150,6 +152,9 @@ def transcribe(turns, sid, manifest, session, seen_items):
             if low in ("log", "end"):
                 pending_learner, after_command = None, True
                 continue
+            if low == "print bank" or (first == "pass" and len(low.split()) <= 3):
+                pending_learner = None                      # the lecture pass's commands; the tutor's turn is read for its check
+                continue
             if first in MODES and len(low.split()) <= 3:
                 if mode_said:
                     ev.append({"type": "signal", "session": session, "kind": "mode", "note": first})
@@ -178,6 +183,17 @@ def transcribe(turns, sid, manifest, session, seen_items):
                         body = l.split(":", 1)[1].strip()
                         materials[key] = [] if body.lower() in ("none", "none yet", "") else [x.strip() for x in re.split(r"\s·\s|;", body) if x.strip()]
             read = True
+
+        # the lecture pass's check: one `pass` line per check printed, the two lines as the tutor wrote them
+        pc = [l for l in lines if l.lower().startswith("pass check:")]
+        if pc:
+            ab = [l for l in lines if l.lower().startswith("able:")]
+            ev.append({"type": "pass", "session": session, "check": pc[0].split(":", 1)[1].strip(),
+                       "able": ab[0].split(":", 1)[1].strip() if ab else ""})
+            read = True
+
+        if any(l.lower().startswith("bank follows:") for l in lines):
+            read = True                                     # the bank printed on `print bank`: nothing in it is an event
 
         # a verdict closes the open card
         m = re.match(r"^(correct|partly|partial|no|wrong)\b", head)
